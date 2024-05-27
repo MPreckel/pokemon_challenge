@@ -2,10 +2,14 @@ import Head from "next/head";
 import Image from "next/image";
 
 
-
-
-
 export default function Home() {
+  // llamar al hook que creaste y acceder a la data
+  // con la data vas a llamar al componente pokemonList y pasarle la data
+  
+  // const {pokemones, masPokemones} = usePokemones();
+  // <PokemonList data = { pokemones } getMore={masPokemones} />
+
+
   return (
     <>
       <Head>
@@ -15,7 +19,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="./styles/globals.css"/>
       </Head>
-    
+      <div>
+        ACA VA EL COMPONENTE POKEMONLIST
+      </div>
     </>
   );
 }

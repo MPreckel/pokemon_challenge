@@ -200,3 +200,15 @@ body{
 .dark {
 	background-color: var(--color-dark);
 }
+
+.active{
+    height: 300px;
+    background-color: red;
+    transition: all 1s ease;
+}
+
+.noactive{
+    height: 0px;
+    background-color: blue;
+    transition: all 1s ease;
+}
