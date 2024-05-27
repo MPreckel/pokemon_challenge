@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import usePokemones from "../hooks/usePokemones"
+import Button from "./Button"
 
 export default function Card() {
   const {pokemones, masPokemones} = usePokemones();
@@ -48,6 +49,7 @@ export default function Card() {
       })}
       <div className='btn-more'>
         <button onClick={masPokemones}>Ver más</button>
+        <Button onClick={masPokemones} />
     </div>
       </>}
       <div onClick={toggleHeight} > PIKACHU </div>

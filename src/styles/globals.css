@@ -212,3 +212,12 @@ body{
     background-color: blue;
     transition: all 1s ease;
 }
+
+.header{
+    height: 140px;
+    width: 387px;
+    background-image: url("./../../public/images/logo.png");
+    background-position: "center";
+    background-repeat: no-repeat;
+    background-size: contain;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "../components/Card";
-import Button from "@/components/Button";
+import HeaderLogo from "@/components/Header";
 
 export default function Test() {
   //let info = {}
@@ -26,6 +26,7 @@ export default function Test() {
    
     return (
       <div>
+        <HeaderLogo />
         <Card />
       </div>
     );
