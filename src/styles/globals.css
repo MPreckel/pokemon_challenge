@@ -59,12 +59,7 @@ body{
     border-radius: 5px;
     color: #fff;
 }
-.grass{
-    background: green;
-}
-.poison{
-    background: violet;
-}
+
 .container{
     background: rebeccapurple;
     display: flex;
@@ -72,12 +67,11 @@ body{
     align-items: center;
     text-align: center;
    
-    
+
 }
 .poke-img{
     height: 140px;
     width: 150px;
-    text-align: center;
     margin-top: 35px;
     
 }
@@ -126,9 +120,10 @@ body{
     font-size: 20px; 
     transition: background-color 0.3s; 
   }
-  .btn-more button:hover {
+ .btn-more button:hover {
     background-color: #0056b3; 
   }
+ 
 .water {
 	background-color: var(--color-water);
 }
@@ -220,4 +215,18 @@ body{
     background-position: "center";
     background-repeat: no-repeat;
     background-size: contain;
+    margin: 10px auto;
+}
+.callpokemones-btn{
+    margin: 0 auto;
+    padding: 15px;
+    width: 150px; 
+    
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; 
+    font-size: 20px; 
+    transition: background-color 0.3s; 
 }

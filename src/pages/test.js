@@ -1,7 +1,8 @@
 import React from "react";
 
-import Card from "../components/Card";
+import Card from "../components/PokemonList";
 import HeaderLogo from "@/components/Header";
+import PokemonList from "../components/PokemonList";
 
 export default function Test() {
   //let info = {}
@@ -27,7 +28,7 @@ export default function Test() {
     return (
       <div>
         <HeaderLogo />
-        <Card />
+        <PokemonList />
       </div>
     );
   
