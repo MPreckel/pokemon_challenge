@@ -14,18 +14,18 @@ export default function usePokemones() {
       results.map(async (pokemon) => {
         const response = await fetch(pokemon.url);
         const poke = await response.json();
-        return {
-          img: poke.sprites.other.dream_world.front_default,
-          name: poke.name,
-          id: poke.id,
-          type1: poke.types[0].type.name,
-        }
+        return poke
       })
     )
     return { next, newPokemones}
    
   };
 
+
+  // img: poke.sprites.other.dream_world.front_default,
+  //         name: poke.name,
+  //         id: poke.id,
+  //         type1: poke.types[0].type.name,
   
   const obtenerPokemones = async () => {
     const { next, newPokemones } = await getPokemones()

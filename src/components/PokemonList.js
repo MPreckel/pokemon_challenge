@@ -12,7 +12,6 @@ export default function PokemonList() {
     <section>
       {!getData && <button onClick={()=> setGetData(true)} className="callpokemones-btn">Conseguir pokemones</button>}
       {getData && 
-      
       <>
         {pokemones.map((item) => (
             <Card key={item.id} pokemon={item} />

@@ -1,13 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
-
+import Router, { useRouter } from "next/router";
 
 export default function Home() {
   // llamar al hook que creaste y acceder a la data
   // con la data vas a llamar al componente pokemonList y pasarle la data
-  
   // const {pokemones, masPokemones} = usePokemones();
   // <PokemonList data = { pokemones } getMore={masPokemones} />
+
+
+  
 
 
   return (
@@ -22,6 +24,7 @@ export default function Home() {
       <div>
         ACA VA EL COMPONENTE POKEMONLIST
       </div>
+
     </>
   );
 }
