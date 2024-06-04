@@ -15,7 +15,6 @@ const Test = () => {
       <div>
         <HeaderLogo />
         <PokemonList />
-
       </div>
     )
   }

@@ -5,6 +5,7 @@ export default function usePokemones() {
   const [pokemones, setPokemones] = useState([])
   const [siguienteUrl, setSiguienteUrl] = useState(``)
   
+
   const getPokemones = async (url = URL_DEFAULT) => {
     const response = await fetch(url);
     const listaPokemones = await response.json();
@@ -18,7 +19,6 @@ export default function usePokemones() {
       })
     )
     return { next, newPokemones}
-   
   };
 
 
@@ -33,15 +33,20 @@ export default function usePokemones() {
     setSiguienteUrl(next)
   }
   
-  
+  const getPokemonesStatic = () => {
+    return pokemones
+  }
+
   const masPokemones = async () => {
     const { next, newPokemones } = await getPokemones(siguienteUrl)
     setPokemones(prev =>[...prev, ...newPokemones])
     setSiguienteUrl(next)
   }
 
-  useEffect(() => {obtenerPokemones()
+  useEffect(() => {
+    console.log("GHOAL")
   }, []);
 
-  return {pokemones, masPokemones};
+
+  return { pokemones, masPokemones, obtenerPokemones };
 }

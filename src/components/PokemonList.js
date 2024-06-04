@@ -4,9 +4,16 @@ import usePokemones from "../hooks/usePokemones"
 import Button from "./Button"
 import Card from "./Card";
 export default function PokemonList() {
-  const {pokemones, masPokemones} = usePokemones();
+  const {pokemones, masPokemones, obtenerPokemones} = usePokemones();
   const [getData, setGetData] = useState(false)
   
+  React.useEffect(() =>{
+    obtenerPokemones()
+  }, [])
+
+  React.useEffect(() =>{
+    console.log(pokemones)
+  },[pokemones])
     
   return (
     <section>

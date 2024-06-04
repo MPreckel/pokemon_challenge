@@ -1,19 +1,26 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import usePokemones from "../hooks/usePokemones"
+
 
 export default function PokemonPage() {
   const router = useRouter();
   const { pokemonId } = router.query;
   const [pokemon, setPokemon] = useState(null);
+  const { pokemones, masPokemones } = usePokemones();
+  
+  console.log(pokemones, "pokemones en card")
 
-  useEffect(() => {
-    if (pokemonId) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-        .then((response) => response.json())
-        .then((data) => setPokemon(data))
-        .catch((error) => console.error('Error fetching Pokémon data:', error));
-    }
-  }, [pokemonId]);
+
+  // console.log(pokemones.filter(p => p.id == pokemonId), "ARIEL FILTERED")
+  // useEffect(() => {
+  //   if (pokemonId) {
+  //     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+  //       .then((response) => response.json())
+  //       .then((data) => setPokemon(data))
+  //       .catch((error) => console.error('Error fetching Pokémon data:', error));
+  //   }
+  // }, [pokemonId]);
 
   if (!pokemon) {
     return <div>Loading...</div>;
