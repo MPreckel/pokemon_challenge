@@ -9,16 +9,16 @@ function Card({pokemon}) {
     const params = useParams()
     const handleClick = (e) => {
       e.preventDefault()
-      router.push("/"+pokemon.id)
+      router.push(`/${pokemon.id}`)
     }
     return (
         <div className="container" key={pokemon.id} onClick={handleClick}>
           <div className="card">
             <div className="card-info">
               <img src={pokemon.sprites.other.dream_world.front_default} alt={pokemon.name} className="card-img poke-img" />
-              <span className="poke-id">#{pokemon.id}</span>
-              <div className="card-types">
-                <span className={pokemon.type1}>{pokemon.type1}</span>
+              <div className="card-types types-list">
+                <span className={pokemon.types[0].type.name}>{pokemon.types[0].type.name}</span>
+                {pokemon.types[1] && <span className={pokemon.types[1].type.name}>{pokemon.types[1].type.name}</span>}
               </div>
             </div>
             <div>
