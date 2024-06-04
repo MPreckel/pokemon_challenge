@@ -41,7 +41,7 @@
 }
 
 .progress-bar {
-    width: 80%;
+    width: 8%;
     height: 20px; /* Menor altura */
     background-color: var(--color-primary);
     border-radius: 20px;

@@ -321,33 +321,5 @@ body{
     text-align: center;
 }
 
-.container-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.stats {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    flex: 1;
-    width: 100%; /* Ajustar al contenedor */
-}
-
-.stat-group {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 100%; /* Ajustar al contenedor */
-}
-
-.stat-group span {
-    flex: 1;
-    font-weight: 500;
-    font-size: 18px;
-}
 
 

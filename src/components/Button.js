@@ -5,7 +5,7 @@ function Button({onClick}) {
     
         <div className='btn-more'>
           <button onClick={onClick}>Ver más</button>
-      </div>
+        </div>
    
       
   )
