@@ -50,11 +50,15 @@ export default function PokemonPage() {
         </div>
       </div>
       <div className="container-stats">
-        <h1>Estadísticas</h1>
+        <h1 className='text-success mt-0'>Estadísticas</h1>
         <div className="stats">
           <div className="stat-group">
             <span>Hp</span>
-            <div className="progress-bar"></div>
+            <div className='progress-bar-container'>
+            <div className={`progress-bar w-${30}`}></div>
+            
+            </div>
+
             <span className="counter-stat">{pokemon.stats[0].base_stat}</span>
           </div>
           <div className="stat-group">
