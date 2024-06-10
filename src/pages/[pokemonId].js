@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
+
 export default function PokemonPage() {
   const router = useRouter();
   const { pokemonId } = router.query;
@@ -19,6 +20,10 @@ export default function PokemonPage() {
     return <div>Loading...</div>;
   }
 
+  const getStatWidth = (statValue, maxValue) => {
+    return Math.min((statValue / maxValue) * 100, 100);
+  };
+
   return (
     <main className="main-container main-pokemon">
       <div className="header-main-pokemon">
@@ -31,79 +36,42 @@ export default function PokemonPage() {
         </div>
         <div className="cccontainer-info-pokemon">
           <div className='prueba'>
-          <h1 className="main-poke-name">{pokemon.name}</h1>
-          <div className="card-types types-main">
-            <span className={pokemon.types[0].type.name}>{pokemon.types[0].type.name}</span>
-            {pokemon.types[1] && <span className={pokemon.types[1].type.name}>{pokemon.types[1].type.name}</span>}
-          </div>
+            <h1 className="main-poke-name">{pokemon.name}</h1>
+            <div className="card-types types-main">
+              <span className={pokemon.types[0].type.name}>{pokemon.types[0].type.name}</span>
+              {pokemon.types[1] && <span className={pokemon.types[1].type.name}>{pokemon.types[1].type.name}</span>}
+            </div>
           </div>
           <div className="info-pokemon">
             <div className="group-info">
-              <p>Altura</p>
+              <p>Height</p>
               <span>{pokemon.height}</span>
             </div>
             <div className="group-info">
-              <p>Peso</p>
+              <p>Weight</p>
               <span>{pokemon.weight}</span>
             </div>
           </div>
         </div>
       </div>
       <div className="container-stats">
-        <h1 className='text-success mt-0'>Estadísticas</h1>
+        <h1>Stats</h1>
         <div className="stats">
-          <div className="stat-group">
-            <span>Hp</span>
-            <div className='progress-bar-container'>
-            <div className={`progress-bar w-${30}`}></div>
-            
-            </div>
-
-            <span className="counter-stat">{pokemon.stats[0].base_stat}</span>
-          </div>
-          <div className="stat-group">
-            <span>Attack</span>
-            <div className="progress-bar"></div>
-            <span className="counter-stat">{pokemon.stats[1].base_stat}</span>
-          </div>
-          <div className="stat-group">
-            <span>Defense</span>
-            <div className="progress-bar"></div>
-            <span className="counter-stat">{pokemon.stats[2].base_stat}</span>
-          </div>
-          <div className="stat-group">
-            <span>Special Attack</span>
-            <div className="progress-bar"></div>
-            <span className="counter-stat">{pokemon.stats[3].base_stat}</span>
-          </div>
-          <div className="stat-group">
-            <span>Special Defense</span>
-            <div className="progress-bar"></div>
-            <span className="counter-stat">{pokemon.stats[4].base_stat}</span>
-          </div>
-          <div className="stat-group">
-            <span>Speed</span>
-            <div className="progress-bar"></div>
-            <span className="counter-stat">{pokemon.stats[5].base_stat}</span>
-          </div>
+          {pokemon.stats.map((stat, index) => {
+            const maxStatValue = stat.stat.name === 'special-attack' ? 120 : 100;
+            const width = getStatWidth(stat.base_stat, maxStatValue);
+            return (
+              <div className="stat-group" key={index}>
+                <span>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}</span>
+                <div className="progress-bar-container">
+                  <div className="progress-bar" style={{ width: `${width}%` }}></div>
+                </div>
+                <span className="counter-stat">{stat.base_stat}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </main>
   );
 }
-
-{/* <div className="container" key={pokemon.id}>
-<div className="card">
-  <div className="card-info">
-    <img src={pokemon.sprites.front_default} alt={pokemon.name} className="card-img poke-img" />
-    <span className="poke-id">#{pokemon.id}</span>
-    <div className="card-types">
-      <span className={pokemon.type1}>{pokemon.type1}</span>
-    </div>
-  </div>
-  <div>
-    <p className="poke-name">{pokemon.name}</p>
-  </div>
-</div>
-
-</div> */}

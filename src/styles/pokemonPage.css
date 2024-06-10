@@ -1,6 +1,6 @@
 
 .container-stats {
-    width: 80vw;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -21,7 +21,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 20px;
     width: 100%;
 }
@@ -32,45 +31,25 @@
     font-size: 18px;
 }
 
-.progress-bar-container{
+.progress-bar-container {
     height: 22px; /* Menor altura */
-    width: 80%;
+    width: 80%; /* Ajustado al 60% */
     border: 1px solid var(--color-primary);
     border-radius: 20px;
-
 }
 
 .progress-bar {
-    width: 8%;
-    height: 20px; /* Menor altura */
+    height: 100%;
+    width: 80%;
     background-color: var(--color-primary);
     border-radius: 20px;
     position: relative;
 }
 
-.progress-bar-test{
-    background-color: "red";
-
-}
-
-.progress-bar::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: var(--color-secondary);
-    border-radius: 10px;
-    width: calc(var(--stat-value) * 1%);
-}
-
 .counter-stat {
     text-align: right;
     font-weight: 700;
-    font-size: 16px;    
+    font-size: 16px;
+    width: 20%; /* Ajustado al 20% */
 }
-.prueba{
-    display: flex;
-    flex-direction: column;
-    
-}
+
