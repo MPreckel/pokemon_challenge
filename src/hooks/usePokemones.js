@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-const URL_DEFAULT = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+const URL_DEFAULT = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
 
 export default function usePokemones() {
-  const [pokemones, setPokemones] = useState([])
-  const [siguienteUrl, setSiguienteUrl] = useState(``)
-  
+  const [pokemones, setPokemones] = useState([]);
+  const [siguienteUrl, setSiguienteUrl] = useState(URL_DEFAULT);
+  const [loading, setLoading] = useState(false);  // Estado para la carga
+
   const getPokemones = async (url = URL_DEFAULT) => {
     const response = await fetch(url);
     const listaPokemones = await response.json();
@@ -14,34 +15,31 @@ export default function usePokemones() {
       results.map(async (pokemon) => {
         const response = await fetch(pokemon.url);
         const poke = await response.json();
-        return poke
+        return poke;
       })
-    )
-    return { next, newPokemones}
-   
+    );
+    return { next, newPokemones };
   };
 
-
-  // img: poke.sprites.other.dream_world.front_default,
-  //         name: poke.name,
-  //         id: poke.id,
-  //         type1: poke.types[0].type.name,
-  
   const obtenerPokemones = async () => {
-    const { next, newPokemones } = await getPokemones()
-    setPokemones(newPokemones)
-    setSiguienteUrl(next)
-  }
-  
-  
-  const masPokemones = async () => {
-    const { next, newPokemones } = await getPokemones(siguienteUrl)
-    setPokemones(prev =>[...prev, ...newPokemones])
-    setSiguienteUrl(next)
-  }
+    setLoading(true);  // Comienza la carga
+    const { next, newPokemones } = await getPokemones();
+    setPokemones(newPokemones);
+    setSiguienteUrl(next);
+    setLoading(false);  // Termina la carga
+  };
 
-  useEffect(() => {obtenerPokemones()
+  const masPokemones = async () => {
+    setLoading(true);  // Comienza la carga
+    const { next, newPokemones } = await getPokemones(siguienteUrl);
+    setPokemones(prev => [...prev, ...newPokemones]);
+    setSiguienteUrl(next);
+    setLoading(false);  // Termina la carga
+  };
+
+  useEffect(() => {
+    obtenerPokemones();
   }, []);
 
-  return {pokemones, masPokemones};
+  return { pokemones, masPokemones, loading };
 }

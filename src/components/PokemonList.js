@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import usePokemones from "../hooks/usePokemones";
 import Button from "./Button";
 import Card from "./Card";
+
 export default function PokemonList() {
-  const { pokemones, masPokemones } = usePokemones();
+  const { pokemones, masPokemones, loading } = usePokemones();
   const [getData, setGetData] = useState(false);
 
   return (
@@ -20,12 +21,17 @@ export default function PokemonList() {
       )}
       {getData && (
         <>
-          {pokemones.map((item) => (
-            <Card key={item.id} pokemon={item} />
-          ))}
-          <div className="btn-more">
-            <Button onClick={masPokemones} />
-          </div>
+          {loading && <div>Loading...</div>}
+          {!loading && (
+            <>
+              {pokemones.map((item) => (
+                <Card key={item.id} pokemon={item} />
+              ))}
+              <div className="btn-more">
+                <Button onClick={masPokemones} />
+              </div>
+            </>
+          )}
         </>
       )}
     </section>
