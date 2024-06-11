@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import usePokemones from "../hooks/usePokemones";
 import Button from "./Button";
 import Card from "./Card";
@@ -6,6 +6,18 @@ import Card from "./Card";
 export default function PokemonList() {
   const { pokemones, masPokemones, loading } = usePokemones();
   const [getData, setGetData] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    if (!loading) {
+      window.scrollTo(0, scrollPosition);
+    }
+  }, [loading, scrollPosition]);
+
+  const handleLoadMore = () => {
+    setScrollPosition(window.scrollY);
+    masPokemones();
+  };
 
   return (
     <section>
@@ -28,7 +40,7 @@ export default function PokemonList() {
                 <Card key={item.id} pokemon={item} />
               ))}
               <div className="btn-more">
-                <Button onClick={masPokemones} />
+                <Button onClick={handleLoadMore} />
               </div>
             </>
           )}
