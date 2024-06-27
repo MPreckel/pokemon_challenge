@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setScrollPosition, setGetData } from '../scrollSlice';
 import usePokemones from "../hooks/usePokemones";
 import Button from "./Button";
 import Card from "./Card";
 
 export default function PokemonList() {
+  const dispatch = useDispatch();
+  const scrollPosition = useSelector((state) => state.scroll.scrollPosition);
+  const getData = useSelector((state) => state.scroll.getData);
   const { pokemones, masPokemones, loading } = usePokemones();
-  const [getData, setGetData] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     if (!loading) {
@@ -15,8 +18,12 @@ export default function PokemonList() {
   }, [loading, scrollPosition]);
 
   const handleLoadMore = () => {
-    setScrollPosition(window.scrollY);
+    dispatch(setScrollPosition(window.scrollY));
     masPokemones();
+  };
+
+  const handleGetPokemones = () => {
+    dispatch(setGetData(true));
   };
 
   return (
@@ -24,7 +31,7 @@ export default function PokemonList() {
       {!getData && (
         <div className="btnSection">
           <button
-            onClick={() => setGetData(true)}
+            onClick={handleGetPokemones}
             className="callpokemones-btn"
           >
             Conseguir pokemones
@@ -33,17 +40,16 @@ export default function PokemonList() {
       )}
       {getData && (
         <>
-          {loading && <div>Loading...</div>}
-          {!loading && (
-            <>
-              {pokemones.map((item) => (
-                <Card key={item.id} pokemon={item} />
-              ))}
-              <div className="btn-more">
-                <Button onClick={handleLoadMore} />
-              </div>
-            </>
-          )}
+          {pokemones.map((item) => (
+            <Card key={item.id} pokemon={item} />
+          ))}
+          <div className="btn-more">
+            {loading ? (
+              <div>Loading...</div>
+            ) : (
+              <Button onClick={handleLoadMore} />
+            )}
+          </div>
         </>
       )}
     </section>

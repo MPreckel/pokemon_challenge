@@ -25,7 +25,10 @@ export default function PokemonPage() {
   };
 
   return (
-    <main className="main-container main-pokemon">
+    <div>
+        <button className="back-btn" onClick={() => router.back()}>ATRÁS</button>
+        <main className="main-container main-pokemon">
+      
       <div className="header-main-pokemon">
         <span className="number-pokemon">#{pokemon.id}</span>
         <div className="cccontainer-img-pokemon">
@@ -73,5 +76,7 @@ export default function PokemonPage() {
         </div>
       </div>
     </main>
+    </div>
+    
   );
 }

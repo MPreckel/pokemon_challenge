@@ -316,6 +316,18 @@ body{
     margin-bottom: 10px;
     text-align: center;
 }
-
-
+.back-btn{
+    background-color: var(--color-primary-hover);
+    color: white;
+    position: absolute;
+    padding: 10px 20px;
+    border: solid 1px white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 80px;
+}
+.back-btn:hover {
+    background-color: var(--color-primary);
+}
 
