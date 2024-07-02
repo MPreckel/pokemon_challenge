@@ -37,9 +37,13 @@ export default function usePokemones() {
     setLoading(false);  // Termina la carga
   };
 
+  const setPokemonesState = (pokemones) => {
+    setPokemones(pokemones);
+  };
+
   useEffect(() => {
     obtenerPokemones();
   }, []);
 
-  return { pokemones, masPokemones, loading };
+  return { pokemones, masPokemones, loading, setPokemonesState };
 }

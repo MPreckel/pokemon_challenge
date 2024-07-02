@@ -61,7 +61,7 @@ export default function PokemonPage() {
         <h1>Stats</h1>
         <div className="stats">
           {pokemon.stats.map((stat, index) => {
-            const maxStatValue = stat.stat.name === 'special-attack' ? 120 : 100;
+            const maxStatValue = stat.stat.name === 'hp' ? 100 : 180;
             const width = getStatWidth(stat.base_stat, maxStatValue);
             return (
               <div className="stat-group" key={index}>
