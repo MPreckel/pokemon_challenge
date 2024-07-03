@@ -10,7 +10,7 @@ function Card({ pokemon }) {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(setScrollPosition(window.scrollY));  // Guardamos la posición de desplazamiento en Redux
-    //dispatch(setGetData(true));  // Cambiamos el estado de getData en Redux
+    dispatch(setGetData(true));  // Cambiamos el estado de getData en Redux
     router.push(`/${pokemon.id}`);
   }
 

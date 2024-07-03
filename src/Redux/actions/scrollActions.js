@@ -7,8 +7,3 @@ export const setGetData = (getData) => ({
   type: 'SET_GET_DATA',
   payload: getData,
 });
-
-export const setPokemones = (pokemones) => ({
-  type: 'SET_POKEMONES',
-  payload: pokemones,
-});

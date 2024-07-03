@@ -1,7 +1,6 @@
 const initialState = {
   scrollPosition: 0,
   getData: false,
-  pokemones: [],
 };
 
 const scrollReducer = (state = initialState, action) => {
@@ -15,11 +14,6 @@ const scrollReducer = (state = initialState, action) => {
       return {
         ...state,
         getData: action.payload,
-      };
-    case 'SET_POKEMONES':
-      return {
-        ...state,
-        pokemones: action.payload,
       };
     default:
       return state;
