@@ -1,10 +1,5 @@
-import React from "react"
+import React from "react";
 
-export default function HeaderLogo(){
-    
-    return(
-        <div className="header" >
-            
-        </div>
-    )
+export default function HeaderLogo() {
+  return <div className="header"></div>;
 }

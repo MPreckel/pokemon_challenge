@@ -5,12 +5,12 @@ const initialState = {
 
 const scrollReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_SCROLL_POSITION':
+    case "SET_SCROLL_POSITION":
       return {
         ...state,
         scrollPosition: action.payload,
       };
-    case 'SET_GET_DATA':
+    case "SET_GET_DATA":
       return {
         ...state,
         getData: action.payload,

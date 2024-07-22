@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default function PokemonPage() {
   const router = useRouter();
@@ -26,10 +27,12 @@ export default function PokemonPage() {
 
   return (
     <div>
-        <button className="back-btn" onClick={() => router.back()}>ATRÁS</button>
+        <button className="back-btn" onClick={() => router.back()}>
+          <FontAwesomeIcon icon={faArrowLeft} size='2x' />
+        </button>
         <main className="main-container main-pokemon">
       
-      <div className="header-main-pokemon">
+      <div className={`header-main-pokemon ${pokemon.types[0].type.name}`}>
         <span className="number-pokemon">#{pokemon.id}</span>
         <div className="cccontainer-img-pokemon">
           <img className="poke-main-img"

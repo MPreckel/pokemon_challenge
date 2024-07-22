@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';  // Importamos hooks de Redux
-import { setScrollPosition, setGetData } from '../Redux/actions/scrollActions';  // Importamos acciones
+import { useDispatch, useSelector } from "react-redux";
+import { setScrollPosition, setGetData } from "../Redux/actions/scrollActions";
 import usePokemones from "../hooks/usePokemones";
 import Button from "./Button";
 import Card from "./Card";
@@ -13,37 +13,38 @@ export default function PokemonList() {
 
   useEffect(() => {
     if (!loading) {
-      window.scrollTo(0, scrollPosition);  // Restauramos la posición de desplazamiento
+      window.scrollTo(0, scrollPosition); // Restauramos la posición de desplazamiento
     }
   }, [loading, scrollPosition]);
 
   const handleLoadMore = () => {
-    dispatch(setScrollPosition(window.scrollY));  // Guardamos la posición de desplazamiento en Redux
+    dispatch(setScrollPosition(window.scrollY)); // Guardamos la posición de desplazamiento en Redux
     masPokemones();
   };
 
   const handleGetPokemones = () => {
-    dispatch(setGetData(true));  // Cambiamos el estado de getData en Redux
+    dispatch(setGetData(true)); // Cambiamos el estado de getData en Redux
   };
 
   return (
-    <section>
+    <section className="container">
       {!getData && (
-        <div className="btnSection">
-          <button
-            onClick={handleGetPokemones}
-            className="callpokemones-btn"
-          >
+        <div className="btnSection text-center">
+          <button onClick={handleGetPokemones} className="callpokemones-btn btn btn-primary">
             Conseguir pokemones
           </button>
         </div>
       )}
       {getData && (
         <>
-          {pokemones.map((item) => (
-            <Card key={item.id} pokemon={item} />
-          ))}
-          <div className="btn-more">
+          <div className="row">
+            {pokemones.map((item) => (
+              <div className="col-md-4 mb-4" key={item.id}>
+                <Card pokemon={item} />
+              </div>
+            ))}
+          </div>
+          <div className="btn-more text-center">
             {loading ? (
               <div>Loading...</div>
             ) : (
@@ -54,4 +55,4 @@ export default function PokemonList() {
       )}
     </section>
   );
-}
+} 
