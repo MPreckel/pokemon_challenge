@@ -29,8 +29,8 @@ export default function PokemonList() {
   return (
     <section className="container">
       {!getData && (
-        <div className="btnSection text-center">
-          <button onClick={handleGetPokemones} className="callpokemones-btn btn btn-primary">
+        <div className="text-center">
+          <button onClick={handleGetPokemones} className="callpokemones-btn">
             Conseguir pokemones
           </button>
         </div>
@@ -39,7 +39,7 @@ export default function PokemonList() {
         <>
           <div className="row">
             {pokemones.map((item) => (
-              <div className="col-md-4 mb-4" key={item.id}>
+              <div className="col-lg-4 mb-4 col-12 col-md-6" key={item.id}>
                 <Card pokemon={item} />
               </div>
             ))}

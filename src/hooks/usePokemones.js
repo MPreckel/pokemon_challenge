@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-const URL_DEFAULT = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
+const URL_DEFAULT = "https://pokeapi.co/api/v2/pokemon?limit=18&offset=0";
 
 export default function usePokemones() {
   const [pokemones, setPokemones] = useState([]);

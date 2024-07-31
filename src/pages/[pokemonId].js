@@ -26,60 +26,58 @@ export default function PokemonPage() {
   };
 
   return (
-    <div>
-        <button className="back-btn" onClick={() => router.back()}>
-          <FontAwesomeIcon icon={faArrowLeft} size='2x' />
-        </button>
-        <main className="main-container main-pokemon">
-      
-      <div className={`header-main-pokemon ${pokemon.types[0].type.name}`}>
-        <span className="number-pokemon">#{pokemon.id}</span>
-        <div className="cccontainer-img-pokemon">
-          <img className="poke-main-img"
-            src={pokemon.sprites.other.dream_world.front_default}
-            alt={pokemon.name}
-          />
-        </div>
-        <div className="cccontainer-info-pokemon">
-          <div className='prueba'>
-            <h1 className="main-poke-name">{pokemon.name}</h1>
-            <div className="card-types types-main">
-              <span className={pokemon.types[0].type.name}>{pokemon.types[0].type.name}</span>
-              {pokemon.types[1] && <span className={pokemon.types[1].type.name}>{pokemon.types[1].type.name}</span>}
-            </div>
+    <div className="page-container">
+      <button className="back-btn" onClick={() => router.back()}>
+        <FontAwesomeIcon icon={faArrowLeft} size='2x' />
+      </button>
+      <main className="main-container main-pokemon">
+        <div className="header-main-pokemon">
+          <span className="number-pokemon">#{pokemon.id}</span>
+          <div className="container-img-pokemon">
+            <img className="poke-main-img"
+              src={pokemon.sprites.other.dream_world.front_default}
+              alt={pokemon.name}
+            />
           </div>
-          <div className="info-pokemon">
-            <div className="group-info">
-              <p>Height</p>
-              <span>{pokemon.height}</span>
-            </div>
-            <div className="group-info">
-              <p>Weight</p>
-              <span>{pokemon.weight}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="container-stats">
-        <h1>Stats</h1>
-        <div className="stats">
-          {pokemon.stats.map((stat, index) => {
-            const maxStatValue = stat.stat.name === 'hp' ? 100 : 180;
-            const width = getStatWidth(stat.base_stat, maxStatValue);
-            return (
-              <div className="stat-group" key={index}>
-                <span>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}</span>
-                <div className="progress-bar-container">
-                  <div className="progress-bar" style={{ width: `${width}%` }}></div>
-                </div>
-                <span className="counter-stat">{stat.base_stat}</span>
+          <div className="container-info-pokemon">
+            <div className='main-types'>
+              <h1 className="main-poke-name">{pokemon.name}</h1>
+              <div className="card-types types-main">
+                <span className={pokemon.types[0].type.name}>{pokemon.types[0].type.name}</span>
+                {pokemon.types[1] && <span className={pokemon.types[1].type.name}>{pokemon.types[1].type.name}</span>}
               </div>
-            );
-          })}
+            </div>
+            <div className="info-pokemon">
+              <div className="group-info">
+                <p>Height</p>
+                <span>{pokemon.height}</span>
+              </div>
+              <div className="group-info">
+                <p>Weight</p>
+                <span>{pokemon.weight}</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </main>
+        <div className="container-stats">
+          <h1>Stats</h1>
+          <div className="stats">
+            {pokemon.stats.map((stat, index) => {
+              const maxStatValue = stat.stat.name === 'hp' ? 100 : 180;
+              const width = getStatWidth(stat.base_stat, maxStatValue);
+              return (
+                <div className="stat-group" key={index}>
+                  <span>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}</span>
+                  <div className="progress-bar-container">
+                    <div className="progress-bar" style={{ width: `${width}%` }}></div>
+                  </div>
+                  <span className="counter-stat">{stat.base_stat}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </main>
     </div>
-    
   );
 }
