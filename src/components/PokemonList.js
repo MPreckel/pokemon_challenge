@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Button from "./Button";
-import { getPokemonsAction, saveScrollPosition  } from '../redux/pokemons/actions/index'
-import { ServerStatus  } from '../redux/pokemons/reducer/index'
 import Card from "./Card";
+
+import { ServerStatus  } from '../redux/pokemons/reducer/index'
+import { getPokemonsAction, saveScrollPosition  } from '../redux/pokemons/actions/index'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
