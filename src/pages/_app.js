@@ -1,9 +1,11 @@
 import "@/styles/globals.css";
 import "@/styles/bootstrap.css";
-import '../styles/PokemonPage.css'
 import { Provider } from 'react-redux';
-import store from '../Redux/store/store';
-export default function App({ Component, pageProps }) {
+import { wrapper } from '../redux/store'
+export default function App({ Component, pageProps,  ...rest }) {
+
+  const { store, props } = wrapper.useWrappedStore(rest)
+
   return(
 
     <Provider store={store}>

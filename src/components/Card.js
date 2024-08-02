@@ -1,16 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setScrollPosition, setGetData } from "../Redux/actions/scrollActions";
 import { useRouter } from "next/router";
 
+
 function Card({ pokemon }) {
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(setScrollPosition(window.scrollY)); // Guardamos la posición de desplazamiento en Redux
-    dispatch(setGetData(true)); // Cambiamos el estado de getData en Redux
     router.push(`/${pokemon.id}`);
   };
 
@@ -45,4 +41,5 @@ function Card({ pokemon }) {
   );
 }
 
-export default Card;
+export default Card
+

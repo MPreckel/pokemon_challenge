@@ -6,10 +6,16 @@ import HeaderLogo from "@/components/Header";
 import PokemonList from "../components/PokemonList";
 
 const Home = () => {
+  const router = useRouter();
+  
+  const redirectHome = () => {
+    router.push('/test')
+  }
   return (
     <div>
       <HeaderLogo />
       <PokemonList />
+      <button onClick={()=>{redirectHome()}}>Go page</button>
     </div>
   );
 };
