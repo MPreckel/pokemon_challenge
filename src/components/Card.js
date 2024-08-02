@@ -1,6 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setScrollPosition, setGetData } from "../Redux/actions/scrollActions";
 import { useRouter } from "next/router";
 
 function Card({ pokemon }) {

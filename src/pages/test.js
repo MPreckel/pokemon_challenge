@@ -1,27 +1,31 @@
-import React from "react";
 
-import Card from "../components/PokemonList";
-import HeaderLogo from "@/components/Header";
-import PokemonList from "../components/PokemonList";
+import React from 'react';
+import { connect } from 'react-redux';
+import { getPokemonsAction } from '../redux/actions/main'
 
-import { useRouter } from "next/router";
+const mapStateToProps = (state) => ({
+  pokemones: store.scroll,
+});
 
-const Test = () => {
-  return (
-    <div className="container-fluid">
-      <div className="container">
-        <div className="row">
-          {/* meter acá al map que devuelve a los hijos, col 12 col-sm-2 col-md-3 */}
-        <div className="col-12 col-md-6 bg-danger">HOLA</div>
-        <div className="col-12 col-md-6 bg-success">CHAU</div>
-        <div className="col-12 col-md-6 bg-primary">CAPO</div>
-        <div className="col-12 col-md-6 bg-danger">HOLA</div>
-        <div className="col-12 col-md-6 bg-success">CHAU</div>
-        <div className="col-12 col-md-6 bg-primary">CAPO</div>
-        </div>
-      </div>
-    </div>
-  );
+const mapDispatchToProps = {
+  getPokemonsAction,
 };
 
-export default Test;
+const TestRedux = ({
+  pokemones,
+  getPokemonsAction
+}) => {
+  React.useEffect(()=>{
+    console.log("ARI", pokemones)
+  },[pokemones])
+  return (
+    <div>
+      <p id='count'>Count: {count}</p>
+      <button onClick={() => getPokemonsAction()}>
+        gfet poemons
+      </button>
+    </div>
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TestRedux);

@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setScrollPosition, setGetData } from "../Redux/actions/scrollActions";
 import usePokemones from "../hooks/usePokemones";
 import Button from "./Button";
 import Card from "./Card";
