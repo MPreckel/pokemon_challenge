@@ -1,46 +1,75 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setScrollPosition, setGetData } from "../Redux/actions/scrollActions";
-import usePokemones from "../hooks/usePokemones";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import Card from "./Card";
 
-export default function PokemonList() {
-  const dispatch = useDispatch();
-  const scrollPosition = useSelector((state) => state.scroll.scrollPosition);
-  const getData = useSelector((state) => state.scroll.getData);
-  const { pokemones, masPokemones, loading } = usePokemones();
+import { ServerStatus  } from '../redux/pokemons/reducer/index'
+import { getPokemonsAction, saveScrollPosition  } from '../redux/pokemons/actions/index'
+import { connect } from 'react-redux'
 
-  useEffect(() => {
-    if (!loading) {
-      window.scrollTo(0, scrollPosition); // Restauramos la posición de desplazamiento
+const mapStateToProps = (state) => {
+  const pokemonReducer = state.pokemons
+  return {
+    pokemons: pokemonReducer.pokemons,
+    messageFetch: pokemonReducer.messageFetch,
+    nextUrl: pokemonReducer.nextUrl,
+    scrollY: pokemonReducer.scrollY,
+    pokemonStatus: pokemonReducer.pokemonStatus
+  }
+}
+
+const mapDispatchToProps = {
+  getPokemonsAction,
+  saveScrollPosition
+}
+
+function PokemonList({
+  pokemons,
+  pokemonStatus,
+  scrollY,
+  nextUrl,
+  getPokemonsAction,
+  saveScrollPosition
+}) {
+
+  const [loading, setLoading] = useState(false)
+  useEffect(()=>{
+    if (scrollY) {
+      window.scrollTo(0, scrollY)
     }
-  }, [loading, scrollPosition]);
+  },[])
 
-  const handleLoadMore = () => {
-    dispatch(setScrollPosition(window.scrollY)); // Guardamos la posición de desplazamiento en Redux
-    masPokemones();
+  useEffect(()=>{
+    if (pokemonStatus === ServerStatus.FETCH) setLoading(false)
+  }, [pokemonStatus])
+
+  const handleGetPokemones = (e) => {
+    setLoading(true)
+    e.preventDefault()
+    e.stopPropagation()
+    getPokemonsAction(nextUrl ? nextUrl : undefined)
   };
 
-  const handleGetPokemones = () => {
-    dispatch(setGetData(true)); // Cambiamos el estado de getData en Redux
-  };
+  const handleSavePos = () => {
+    saveScrollPosition(window.scrollY)
+  }
 
   return (
     <section className="container poke-list">
-      {!getData && (
+      {pokemons.length === 0 && (
         <div className="text-center">
-          <button onClick={handleGetPokemones} className="callpokemones-btn">
+          <button onClick={(e)=>{
+            handleGetPokemones(e)
+            }} className="callpokemones-btn">
             Conseguir pokemones
           </button>
         </div>
       )}
-      {getData && (
+      {pokemons.length > 0 && (
         <>
           <div className="row">
-            {pokemones.map((item) => (
-              <div className="col-lg-4 mb-4 col-12 col-md-6" key={item.id}>
-                <Card pokemon={item} />
+            {pokemons.map((pokemon) => (
+              <div onClick={handleSavePos} className="col-lg-4 mb-4 col-12 col-md-6" key={pokemon.id}>
+                <Card pokemon={pokemon} />
               </div>
             ))}
           </div>
@@ -48,7 +77,7 @@ export default function PokemonList() {
             {loading ? (
               <div>Loading...</div>
             ) : (
-              <Button onClick={handleLoadMore} />
+              <Button onClick={(e)=>handleGetPokemones(e)} />
             )}
           </div>
         </>
@@ -56,3 +85,5 @@ export default function PokemonList() {
     </section>
   );
 } 
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonList)

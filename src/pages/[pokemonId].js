@@ -2,18 +2,49 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { ServerStatus  } from '../redux/pokemons/reducer/index'
+import { getPokemonsAction, saveScrollPosition  } from '../redux/pokemons/actions/index'
+import { connect } from 'react-redux'
 
-export default function PokemonPage() {
+const mapStateToProps = (state) => {
+  const pokemonReducer = state.pokemons
+  return {
+    pokemons: pokemonReducer.pokemons,
+    messageFetch: pokemonReducer.messageFetch,
+    nextUrl: pokemonReducer.nextUrl,
+    scrollY: pokemonReducer.scrollY,
+    pokemonStatus: pokemonReducer.pokemonStatus
+  }
+}
+
+const mapDispatchToProps = {
+  getPokemonsAction,
+  saveScrollPosition
+}
+
+function PokemonPage({
+  pokemons,
+  pokemonStatus,
+  scrollY,
+  nextUrl,
+  getPokemonsAction,
+  saveScrollPosition
+}) {
   const router = useRouter();
   const { pokemonId } = router.query;
   const [pokemon, setPokemon] = useState(null);
 
   useEffect(() => {
     if (pokemonId) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+      const actualPokemon = pokemons.find((pokemon) => pokemon.id == pokemonId)
+      if (actualPokemon === undefined){
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
         .then((response) => response.json())
         .then((data) => setPokemon(data))
         .catch((error) => console.error('Error fetching Pokémon data:', error));
+      } else {
+        setPokemon(actualPokemon)
+      }
     }
   }, [pokemonId]);
 
@@ -81,3 +112,5 @@ export default function PokemonPage() {
     </div>
   );
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonPage)
