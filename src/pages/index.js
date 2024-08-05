@@ -12,7 +12,7 @@ const Home = () => {
     router.push('/test')
   }
   return (
-    <div>
+    <div style={{width: "100%"}}>
       <HeaderLogo />
       <PokemonList />
     </div>

@@ -257,8 +257,12 @@ body{
     z-index: 1000; /* Asegurar que esté sobre otros elementos */
 }
 .header-image{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 140px;
-    width: 387px;
+    width: 100%;
+    max-width: 387px;
     background-image: url("./../../public/images/logo.png");
     margin: 10px;
 }
