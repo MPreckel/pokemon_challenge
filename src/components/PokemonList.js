@@ -27,7 +27,7 @@ export default function PokemonList() {
   };
 
   return (
-    <section className="container">
+    <section className="container poke-list">
       {!getData && (
         <div className="text-center">
           <button onClick={handleGetPokemones} className="callpokemones-btn">

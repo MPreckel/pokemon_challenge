@@ -16,7 +16,7 @@
 body{
     background: rgb(252, 243, 243);
 }
-.container{
+.poke-list{
     margin-top: 160px;
 }
 .card {
@@ -295,10 +295,7 @@ body{
 }
 
 .page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea los elementos al inicio del contenedor */
-    padding: 20px;
+    display: flex;   
 }
 
 .back-btn {
@@ -309,8 +306,8 @@ body{
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-bottom: 20px; /* Añadir margen inferior para separación */
-    align-self: flex-start; /* Alinea el botón al inicio en el eje principal */
+    height: fit-content;
+    
 }
 
 .back-btn:hover {
